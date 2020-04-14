@@ -1,0 +1,8 @@
+<mat-toolbar color="primary">
+  <h1 class="title">NGRX simple demo</h1>
+</mat-toolbar>
+<mat-progress-bar mode="indeterminate" color="primary" *ngIf="loading$ | async"></mat-progress-bar>
+
+<div class="container">
+  <app-account-controls></app-account-controls>
+</div>

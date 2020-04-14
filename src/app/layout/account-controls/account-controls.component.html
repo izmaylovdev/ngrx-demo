@@ -1,0 +1,34 @@
+<div>
+  <mat-card>
+    <mat-card-title>Founds amount:</mat-card-title>
+    <mat-card-content>{{ funds$ | async | currency }}</mat-card-content>
+  </mat-card>
+
+  <mat-card>
+    <mat-card-title>Credit limit:</mat-card-title>
+    <mat-card-content>
+      <span>Total: {{ creditLimit$ | async | currency }}</span>
+      <span>Left: {{ allowedLimit$ | async | currency }}</span>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="accent" (click)="changeCreditLimit()">Change limit</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <div class="row">
+    <mat-form-field class="example-full-width">
+      <mat-label>Transaction amount</mat-label>
+      <input matInput type="number" [(ngModel)]="transactionAmount">
+    </mat-form-field>
+    <button [disabled]="loading$ | async" (click)="deposit()" mat-button>Deposit</button>
+    <button [disabled]="loading$ | async" (click)="withdraw()" mat-button>Withdraw</button>
+  </div>
+</div>
+
+<aside>
+  <h2>History: </h2>
+  <mat-list>
+    <mat-list-item *ngFor="let item of history$ | async">{{ item | currency }}</mat-list-item>
+  </mat-list>
+</aside>
+
